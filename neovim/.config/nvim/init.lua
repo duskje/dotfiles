@@ -12,12 +12,8 @@ local key_mapper = function(mode, key, result)
     {noremap = true, silent = true})
 end
 
-key_mapper('i', 'jk', '<ESC>')
-key_mapper('i', 'JK', '<ESC>')
-key_mapper('i', 'jK', '<ESC>')
-key_mapper('v', 'jk', '<ESC>')
-key_mapper('v', 'JK', '<ESC>')
-key_mapper('v', 'jK', '<ESC>')
+-- key_mapper('i', 'jk', '<ESC>')
+-- key_mapper('v', 'jk', '<ESC>')
 -- Diagnostics configuration
 
 vim.g.map_leader = ' '
@@ -105,6 +101,10 @@ require('packer').startup(function(use)
     }
 
     use 'm4xshen/autoclose.nvim'
+
+    use 'ggandor/leap.nvim'
+
+    use 'max397574/better-escape.nvim'
 
     if packer_bootstrap then
         require('packer').sync()
