@@ -1,0 +1,22 @@
+[user]
+    name = David Oscanoa
+    email = duskje@protonmail.com
+
+[core]
+    pager = delta
+    diffFilter = delta --color-only
+    editor = vim
+
+[delta]
+    hyperlinks = true
+    navigate = true
+    light = false
+    line-numbers = true
+    side-by-side = true
+
+[merge]
+    conflictstyle = diff3
+
+[diff]
+    colorMoved = default
+
