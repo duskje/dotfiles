@@ -16,11 +16,14 @@ require("mason-lspconfig").setup({
   ensure_installed = language_servers,
 })
 
-require("mason-tool-installer").setup({
-  ensure_installed = {
+local linters = {
+    'actionlint', -- esto es githubactions
     'sonarlint-language-server',
     'prettierd',
-  }
+}
+
+require("mason-tool-installer").setup({
+    ensure_installed=linters,
 })
 
 local cmp = require('cmp')
@@ -106,7 +109,6 @@ require('better_escape').setup {
   clear_empty_lines = false,
   keys = '<Esc>',
 }
-
 
 require('sonarlint').setup({
    server = {

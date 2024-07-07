@@ -156,6 +156,8 @@ require('packer').startup(function(use)
         end
     }
 
+    use { 'mfussenegger/nvim-lint' }
+
     if packer_bootstrap then
         require('packer').sync()
     end
@@ -172,6 +174,7 @@ require('neo-tree').setup {
 
 require("auto-session").setup {
       log_level = "error",
+      pre_save_cmds = {"Neotree close"},
       auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/"},
 }
 
@@ -262,5 +265,5 @@ which_key.register({
         name = "Tabs",
         n = { "<cmd>tabnew<cr>", "New tab"},
         d = { "<cmd>tabclose<cr>", "Delete tab"}
-    }
+    },
 }, { prefix = '<leader>' })
