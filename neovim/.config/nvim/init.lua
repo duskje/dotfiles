@@ -43,6 +43,7 @@ require('packer').startup(function(use)
     -- languages
     use 'neovim/nvim-lspconfig'
     use 'williamboman/mason.nvim'
+    use 'jay-babu/mason-nvim-dap.nvim'
 
     use {
       'williamboman/mason-lspconfig.nvim',
@@ -107,20 +108,25 @@ require('packer').startup(function(use)
             'rafamadriz/friendly-snippets'
         }
     }
-
-    use {
-        "microsoft/vscode-js-debug",
-        opt = true,
-        run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out"
-    }
+    
+--    use {
+--        "microsoft/vscode-js-debug",
+--        opt = true,
+--        run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out"
+--    }
 
     use 'm4xshen/autoclose.nvim'
 
     use 'ggandor/leap.nvim'
 
-    use 'max397574/better-escape.nvim'
+    use {
+        'max397574/better-escape.nvim',
+        tag = "v1.0.0"
+    }
 
-    use 'numToStr/prettierrc.nvim'
+    use {
+        'numToStr/prettierrc.nvim'
+    }
 
     use {
         "rcarriga/nvim-dap-ui",
@@ -153,7 +159,8 @@ require('packer').startup(function(use)
         config = function()
             vim.o.timeout = true
             vim.o.timeoutlen = 0
-        end
+        end,
+        tag = "v2.1.0"
     }
 
     use { 'mfussenegger/nvim-lint' }

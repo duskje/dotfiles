@@ -3,7 +3,7 @@ require("dap").adapters['pwa-node'] = {
   host = "localhost",
   port = "${port}",
   executable = {
-    command = 'js-debug-adapter', -- using mason config
+    command = 'node-debug2-adapter', -- using mason config
     args = {'${port}'}
   }
 }
@@ -22,14 +22,14 @@ for _, language in ipairs(js_based_languages) do
       port = 9229,
       cwd = "${workspaceFolder}",
     },
-    {
-      type = "pwa-node",
-      request = "attach",
-      name = "Attach to node",
-      processId = require('dap.utils').pick_process({filter = 'node'}),
-      program = "${file}",
-      cwd = "${workspaceFolder}",
-    },
+--    {
+--      type = "pwa-node",
+--      request = "attach",
+--      name = "Attach to node",
+--      processId = require('dap.utils').pick_process({filter = 'node'}),
+--      program = "${file}",
+--      cwd = "${workspaceFolder}",
+--    },
     {
       type = "pwa-node",
       request = "attach",

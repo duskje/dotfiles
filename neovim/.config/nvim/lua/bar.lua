@@ -7,7 +7,7 @@ require('tokyonight').setup {
 }
 
 require('lualine').setup {
-    options = { 
+    options = {
         theme = 'tokyonight' ,
         disabled_filetypes = {
             statusline = {'packer', 'neo-tree', 'neo-tree-popup'}
