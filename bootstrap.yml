@@ -7,6 +7,12 @@
         name: atim/lazygit
         state: enabled
       become: true
+
+    - name: Add docker repo
+      shell: sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+      args:
+        creates: /etc/yum.repos.d/docker-ce.repo
+
     - name: Install packages
       become: yes
       ansible.builtin.dnf:
@@ -22,39 +28,56 @@
           - yarnpkg
           - ripgrep
           - python3-psutil
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-buildx-plugin
+          - docker-compose-plugin
         state: present
+
+    - name: Start docker
+      become: yes
+      ansible.builtin.systemd_service:
+        state: started
+        name: docker
+
     - name: Install poetry
       community.general.pipx:
         name: poetry
         state: present
-    - name: Add docker repo
-      shell: sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
-      args:
-        creates: /etc/yum.repos.d/docker-ce.repo
+
+    # add docker install
+
     - name: Set up gitconfig
       shell: "stow gitconfig --verbose=2"
       register: result
       changed_when: "result.stderr is search('LINK: ')"
+
     - name: Set up neovim
       shell: "stow neovim --verbose=2"
       register: result
       changed_when: "result.stderr is search('LINK: ')"
+
     - name: Set up bash
       shell: "stow bash --verbose=2"
       register: stow_result
       changed_when: "stow_result.stderr is search('LINK: ')"
+
     - name: Show battery percentage
       community.general.dconf:
         key: "/org/gnome/desktop/interface/show-battery-percentage"
         value: true
+
     - name: Install DBeaver
       community.general.flatpak:
         name: io.dbeaver.DBeaverCommunity
         state: latest
+
     - name: Install Bitwarden
       community.general.flatpak:
         name: com.bitwarden.desktop
         state: latest
+
     - name: Load gnome config
       shell: "dconf load / < gnome_keybindings.conf"
 

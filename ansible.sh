@@ -1,2 +1,2 @@
 sudo dnf install -y ansible
-ansible-playbook boostrap.yml -vv --ask-become-pass
+ansible-playbook ./bootstrap.yml -vv --ask-become-pass
