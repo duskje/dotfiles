@@ -90,6 +90,7 @@
       shell: "ls {{ lookup('env', 'HOME') }}/.fonts/MartianMono*"
       register: martian_mono_exists
       ignore_errors: yes
+      changed_when: false
 
     - name: Download MartianMono
       when: martian_mono_exists is failed
@@ -97,3 +98,15 @@
         src: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/MartianMono.zip
         dest: "{{ lookup('env', 'HOME') }}/.fonts/"
         remote_src: yes
+
+    - name: Is rust installed
+      shell: rustc --version
+      register: rust_exists 
+      ignore_errors: yes
+      changed_when: false
+      
+    - name: Install rust
+      when: rust_exists is failed
+      shell: |
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+        . "$HOME/.cargo/env"
