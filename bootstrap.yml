@@ -78,6 +78,11 @@
         name: com.bitwarden.desktop
         state: latest
 
+    - name: Install Obsidian
+      community.general.flatpak:
+        name: md.obsidian.Obsidian
+        state: latest
+
     - name: Load gnome config
       shell: "dconf load / < gnome_keybindings.conf"
 
