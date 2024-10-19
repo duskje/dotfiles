@@ -5,7 +5,7 @@ require("mason-nvim-dap").setup({
 })
 
 local language_servers = {
-    'tsserver',
+    'ts_ls',
     'eslint',
     'html',
     'cssls',
