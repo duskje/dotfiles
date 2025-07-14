@@ -1,7 +1,7 @@
 require('tokyonight').setup {
     style='night',
     sidebars={'qf', 'help'},
-    -- hide_inactive_statusline=true,
+    hide_inactive_statusline=true,
     lualine_bold=true,
     dim_inactive=true,
 }

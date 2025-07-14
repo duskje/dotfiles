@@ -108,12 +108,6 @@ require('packer').startup(function(use)
             'rafamadriz/friendly-snippets'
         }
     }
-    
---    use {
---        "microsoft/vscode-js-debug",
---        opt = true,
---        run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out"
---    }
 
     use 'm4xshen/autoclose.nvim'
 
@@ -129,13 +123,6 @@ require('packer').startup(function(use)
     }
 
     use {
-        "rcarriga/nvim-dap-ui",
-        requires = { "mfussenegger/nvim-dap" , "nvim-neotest/nvim-nio" }
-    }
-
-    use { "mxsdev/nvim-dap-vscode-js", requires = { "mfussenegger/nvim-dap" } }
-
-    use {
         'nvim-lualine/lualine.nvim',
         requires = { 'nvim-tree/nvim-web-devicons', opt = true }
     }
@@ -146,7 +133,7 @@ require('packer').startup(function(use)
 
     use {
         'nvim-telescope/telescope.nvim',
-        tag = '0.1.6',
+        tag = '0.1.8',
         dependencies = {'nvim-lua/plenary.nvim'},
     }
 
@@ -171,6 +158,7 @@ require('packer').startup(function(use)
 end)
 
 require('neo-tree').setup {
+    close_if_last_window = true,
     filesystem = {
         hijack_netrw_behavior = 'open_current',
         filtered_items = {
@@ -187,7 +175,6 @@ require("auto-session").setup {
 
 require('plugins')
 require('bar')
-require('debugging')
 
 local actions = require("telescope.actions")
 local telescope = require('telescope')
@@ -240,22 +227,6 @@ which_key.register({
         b = { "<cmd>Telescope git_branches<cr>", "Show branches"},
         s = { "<cmd>Telescope git_status<cr>", "Show current diff"},
         d = { "<cmd>Telescope git_commits<cr>", "Commits diff"},
-    },
-    d = {
-        name = "Debug",
-        b = { require('dap').toggle_breakpoint, "Toggle breakpoint" },
-        B = { function ()
-                vim.ui.input({ prompt ='Breakpoint condition' },
-                    function(input)
-                        require('dap').set_breakpoint(input)
-                    end)
-              end, "Toggle breakpoint expression"
-        },
-        c = { require('dap').continue, "Continue"},
-        v = { require('dap').step_over, "Step over" },
-        o = { require('dap').step_out, "Step out" },
-        i = { require('dap').step_into, "Step into" },
-        u = { require('dapui').toggle, "Toggle UI" },
     },
     n = {
         name = "Navigation",

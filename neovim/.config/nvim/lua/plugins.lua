@@ -1,11 +1,8 @@
 require('autoclose').setup()
 require("mason").setup()
-require("mason-nvim-dap").setup({
-    ensure_installed = { "node2" }
-})
 
 local language_servers = {
-    'tsserver',
+    'ts_ls',
     'eslint',
     'html',
     'cssls',
@@ -21,8 +18,9 @@ require("mason-lspconfig").setup({
 
 local linters = {
     'actionlint', -- esto es githubactions
-    'sonarlint-language-server',
-    'prettierd',
+    -- 'sonarlint-language-server',
+    -- 'prettierd',
+    'shellcheck',
 }
 
 require("mason-tool-installer").setup({
@@ -71,6 +69,25 @@ for _, language_server in ipairs(language_servers) do
     capabilities = capabilities
   }
 end
+
+local lint = require("lint")
+
+lint.linters_by_ft = {
+  sh = { "shellcheck" },
+  yaml = { "actionlint" },
+}
+
+vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter", "InsertLeave" }, {
+  callback = function()
+
+    -- try_lint without arguments runs the linters defined in `linters_by_ft`
+    -- for the current filetype
+    lint.try_lint()
+
+    -- You can call `try_lint` with a linter name or a list of names to always
+    -- run specific linters, independent of the `linters_by_ft` configuration
+  end,
+})
 
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', {}),
