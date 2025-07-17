@@ -42,14 +42,18 @@ require('packer').startup(function(use)
 
     -- languages
     use 'neovim/nvim-lspconfig'
-    use 'williamboman/mason.nvim'
+    use {
+      'williamboman/mason.nvim',
+      tag = 'v1.10.0'
+    }
     use 'jay-babu/mason-nvim-dap.nvim'
 
     use {
       'williamboman/mason-lspconfig.nvim',
       requires = {
         'williamboman/mason.nvim'
-      }
+      },
+      tag = 'v1.32.0'
     }
 
     use {

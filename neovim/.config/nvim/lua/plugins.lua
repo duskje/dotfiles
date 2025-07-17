@@ -2,14 +2,14 @@ require('autoclose').setup()
 require("mason").setup()
 
 local language_servers = {
-    'ts_ls',
+--     'ts_ls',
     'eslint',
     'html',
     'cssls',
     'clangd',
     'lua_ls',
     'pyright',
-    'volar', -- esto es el vue language server
+--    'volar', -- esto es el vue language server
 }
 
 require("mason-lspconfig").setup({
