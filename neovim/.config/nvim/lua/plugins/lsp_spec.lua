@@ -5,7 +5,6 @@ return {
             -- Automatically install LSPs and related tools to stdpath for Neovim
             -- Mason must be loaded before its dependents so we need to set it up here.
             -- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
-            { 'mason-org/mason.nvim', opts = {} },
             'mason-org/mason-lspconfig.nvim',
             'WhoIsSethDaniel/mason-tool-installer.nvim',
 
@@ -38,33 +37,41 @@ return {
             end
         end
     },
-    {
-        'mason-org/mason.nvim',
-        version = 'v2.1.0',
-        opts = {}
-    },
     { 'jay-babu/mason-nvim-dap.nvim' },
     {
         'mason-org/mason-lspconfig.nvim',
         dependencies = {
-            'mason-org/mason.nvim'
+            {
+                'mason-org/mason.nvim',
+                opts = {},
+                version = 'v2.1.0',
+            },
         },
         version = 'v2.1.0',
         opts = {
             --     'ts_ls',
+            'pyright',
             'eslint',
             'html',
             'cssls',
             'clangd',
             'lua_ls',
             'rust_analyzer',
-        }
+        },
+        automatic_enable = true,
     },
     {
         'WhoIsSethDaniel/mason-tool-installer.nvim',
         dependencies = {
             'mason-org/mason.nvim'
-        }
+        },
+        ensure_installed = {
+            'rust_analyzer',
+            'actionlint',
+            'shellcheck',
+            'pyright',
+            'typescript-language-server',
+        },
     },
     {
         'saghen/blink.cmp',
