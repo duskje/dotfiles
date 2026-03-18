@@ -102,9 +102,14 @@ return {
     {
         'rmagatti/auto-session',
         lazy = false,
-        opt = {
+        opts = {
             show_auto_restore_notif = true,
-            suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
+            suppressed_dirs = { "~/*" },
+            bypass_save_filetypes = {'neo-tree'},
+            close_file_types_on_save = {'neo-tree'},
+            pre_save_cmds = {
+                "Neotree close"
+            }
         },
     },
 

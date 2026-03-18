@@ -8,6 +8,7 @@ vim.o.updatetime = 250
 vim.wo.number = true
 
 vim.g.enable_floating_diagnostic = false
+vim.o.sessionoptions = "buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
     group = vim.api.nvim_create_augroup("float_diagnostic", { clear = true }),
@@ -58,6 +59,7 @@ which_key.register({
         name = "Buffers",
         b = { "<cmd>Telescope buffers<cr>", "Show buffers" },
         n = { "<cmd>enew<cr>", "New buffer" },
+        t = { "<cmd>belowright split | resize 10 | term<cr>", "New terminal" },
         c = { "<cmd>bdelete<cr>", "Close current buffer" },
         d = { function ()
                   local buffers_cmd = vim.api.nvim_exec('buffers', true)
