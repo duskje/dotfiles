@@ -19,7 +19,14 @@ return {
         },
         opts = {
             servers = {
-                pyright = {},
+                pyright = {
+                    rootmarkers = { "pyproject.toml" },
+                    settings = {
+                        python = {
+                            venvPath = "./.venv"
+                        },
+                    },
+                },
                 lua_ls = {},
                 html = {},
                 eslint = {},
