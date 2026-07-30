@@ -205,6 +205,7 @@ return {
         cmd = "Neogit",
         opts = {
             kind = "floating",
+            graph_style = "kitty",
         },
         keys = {
             { "<leader>gg", "<cmd>Neogit<cr>", desc = "Show Neogit UI" }
