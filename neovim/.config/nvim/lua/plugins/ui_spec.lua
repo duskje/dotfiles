@@ -165,5 +165,38 @@ return {
                 end,
             })
         end,
+    },
+    {
+        "f-person/git-blame.nvim",
+        event = "VeryLazy",
+        commit = "5c536e2d4134d064aa3f41575280bc8a2a0e03d7",
+        keys = {
+            {
+                "<leader>gB",
+                "<cmd>GitBlameToggle<cr>",
+                desc = "Toggle git blame",
+            },
+            {
+                "<leader>gP",
+                "<cmd>GitBlameCopyPRURL<cr>",
+                desc = "Copy git blame URL",
+            },
+        },
+        opts = {
+            enable = true,
+        }
+    },
+    {
+      "NeogitOrg/neogit",
+      lazy = true,
+      dependencies = {
+        "sindrets/diffview.nvim",
+        "m00qek/baleia.nvim",
+        "nvim-telescope/telescope.nvim",
+      },
+      cmd = "Neogit",
+      keys = {
+        { "<leader>gg", "<cmd>Neogit<cr>", desc = "Show Neogit UI" }
+      }
     }
 }
