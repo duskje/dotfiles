@@ -23,6 +23,7 @@ return {
         lazy = false,
         opts = {
             close_if_last_window = true,
+            position = "float",
             filesystem = {
                 hijack_netrw_behavior = 'open_current',
                 filtered_items = {
@@ -30,13 +31,20 @@ return {
                 }
             }
         },
-        config = function(_, opts)
-            vim.keymap.set('n', '<A-1>', function()
-                vim.cmd [[Neotree toggle]]
-            end)
-
-            require("neo-tree").setup(opts)
-        end
+        keys =  {
+            {
+                "<A-1>",
+                "<cmd>Neotree toggle float<cr>",
+                desc="Toggle NeoTree",
+            }
+        },
+--        config = function(_, opts)
+--            vim.keymap.set('n', '<A-1>', function()
+--                vim.cmd [[Neotree toggle]]
+--            end)
+--
+--            require("neo-tree").setup(opts)
+--        end
     },
     {
         "folke/trouble.nvim",
@@ -105,11 +113,11 @@ return {
         opts = {
             show_auto_restore_notif = true,
             suppressed_dirs = { "~/*" },
-            bypass_save_filetypes = {'neo-tree'},
-            close_file_types_on_save = {'neo-tree'},
-            pre_save_cmds = {
-                "Neotree close"
-            }
+--            bypass_save_filetypes = {'neo-tree'},
+--            close_file_types_on_save = {'neo-tree'},
+--            pre_save_cmds = {
+--                "Neotree close"
+--            }
         },
     },
 
@@ -165,5 +173,52 @@ return {
                 end,
             })
         end,
+    },
+    {
+        "f-person/git-blame.nvim",
+        event = "VeryLazy",
+        commit = "5c536e2d4134d064aa3f41575280bc8a2a0e03d7",
+        keys = {
+            {
+                "<leader>gB",
+                "<cmd>GitBlameToggle<cr>",
+                desc = "Toggle git blame",
+            },
+            {
+                "<leader>gP",
+                "<cmd>GitBlameCopyPRURL<cr>",
+                desc = "Copy git blame URL",
+            },
+        },
+        opts = {
+            enable = true,
+        }
+    },
+    {
+        "NeogitOrg/neogit",
+        lazy = true,
+        dependencies = {
+            "sindrets/diffview.nvim",
+            "m00qek/baleia.nvim",
+            "nvim-telescope/telescope.nvim",
+        },
+        cmd = "Neogit",
+        opts = {
+            kind = "floating",
+            graph_style = "kitty",
+        },
+        keys = {
+            { "<leader>gg", "<cmd>Neogit<cr>", desc = "Show Neogit UI" }
+        }
+    }, {
+        "stevearc/oil.nvim",
+        ---@module 'oil'
+        ---@type oil.SetupOpts
+        opts = {},
+        -- Optional dependencies
+        -- dependencies = { { "nvim-mini/mini.icons", opts = {} } },
+        dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
+        -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+        lazy = false,
     }
 }

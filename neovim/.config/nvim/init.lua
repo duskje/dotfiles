@@ -4,6 +4,7 @@ vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = true
 vim.o.updatetime = 250
+vim.o.cmdheight = 0
 
 vim.wo.number = true
 
@@ -46,6 +47,8 @@ vim.keymap.del('n', 'grt')
 vim.keymap.del('n', 'gO')
 -- vim.keymap.map('i', 'jk', "<Esc>")
 
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+
 require("config.lazy")
 
 vim.notify = require("notify")
@@ -54,6 +57,7 @@ require('bar')
 require('lsp')
 
 local which_key = require('which-key')
+
 
 which_key.register({
     b = {
@@ -118,4 +122,5 @@ which_key.register({
             "Toggle diagnostics floating window",
         }
     },
+    l = {"<cmd>Lazy<cr>", "Open Lazy"},
 }, { prefix = '<leader>' })

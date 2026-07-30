@@ -20,10 +20,12 @@ return {
         opts = {
             servers = {
                 pyright = {
-                    rootmarkers = { "pyproject.toml" },
                     settings = {
                         python = {
-                            venvPath = "./.venv"
+                            analysis = {
+                                venvPath = ".",
+                                venv = ".venv",
+                            }
                         },
                     },
                 },
