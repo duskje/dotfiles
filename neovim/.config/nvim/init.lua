@@ -44,6 +44,7 @@ vim.keymap.del('n', 'grn')
 vim.keymap.del('n', 'grr')
 vim.keymap.del('n', 'grt')
 vim.keymap.del('n', 'gO')
+-- vim.keymap.map('i', 'jk', "<Esc>")
 
 require("config.lazy")
 
