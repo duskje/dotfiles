@@ -46,6 +46,8 @@ vim.keymap.del('n', 'grr')
 vim.keymap.del('n', 'grt')
 vim.keymap.del('n', 'gO')
 
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+
 require("config.lazy")
 
 vim.notify = require("notify")
@@ -54,6 +56,7 @@ require('bar')
 require('lsp')
 
 local which_key = require('which-key')
+
 
 which_key.register({
     b = {
@@ -118,4 +121,5 @@ which_key.register({
             "Toggle diagnostics floating window",
         }
     },
+    l = {"<cmd>Lazy<cr>", "Open Lazy"},
 }, { prefix = '<leader>' })
