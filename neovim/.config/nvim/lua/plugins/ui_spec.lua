@@ -89,9 +89,9 @@ return {
     },
     {
         'ggandor/leap.nvim',
-        config = function()
-            require('leap').create_default_mappings()
-        end
+--        config = function()
+--            require('leap').create_default_mappings()
+--        end
     },
     {
         'max397574/better-escape.nvim',
@@ -107,19 +107,19 @@ return {
         'nvim-lualine/lualine.nvim',
         dependencies = { 'nvim-tree/nvim-web-devicons', opt = true }
     },
-    {
-        'rmagatti/auto-session',
-        lazy = false,
-        opts = {
-            show_auto_restore_notif = true,
-            suppressed_dirs = { "~/*" },
+--    {
+--        'rmagatti/auto-session',
+--        lazy = false,
+--        opts = {
+--            show_auto_restore_notif = true,
+--            suppressed_dirs = { "~/*" },
 --            bypass_save_filetypes = {'neo-tree'},
 --            close_file_types_on_save = {'neo-tree'},
 --            pre_save_cmds = {
 --                "Neotree close"
 --            }
-        },
-    },
+--        },
+--    },
 
     {
         'nvim-telescope/telescope.nvim',
@@ -204,7 +204,7 @@ return {
         },
         cmd = "Neogit",
         opts = {
-            kind = "floating",
+            kind = "replace",
             graph_style = "kitty",
         },
         keys = {
